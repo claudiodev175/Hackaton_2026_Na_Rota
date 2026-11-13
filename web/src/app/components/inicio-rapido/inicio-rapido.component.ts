@@ -62,12 +62,12 @@ export class InicioRapidoComponent {
           lng: posicao.coords.longitude
         };
         this.endereco.set('Localização atual (GPS ativo)');
-        this.mensagemStatus.set('✅ Localização encontrada! Agora confirme quantas pessoas estão com você.');
+        this.mensagemStatus.set('Localização encontrada. Agora confirme quantas pessoas estão com você.');
       },
       () => {
         this.carregandoGps.set(false);
         this.erroGps.set(true);
-        this.mensagemStatus.set('⚠️ Sinal de GPS fraco. Digite seu bairro ou município abaixo.');
+        this.mensagemStatus.set('Sinal de GPS fraco. Digite seu bairro ou município abaixo.');
       },
       { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 }
     );

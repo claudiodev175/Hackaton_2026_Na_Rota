@@ -38,7 +38,7 @@ export class TelaSosComponent {
       ? ` | GPS: ${this.dadosUsuario.coordenadas.lat.toFixed(5)}, ${this.dadosUsuario.coordenadas.lng.toFixed(5)}`
       : '';
 
-    const texto = `🚨 PEDIDO DE S.O.S - APP NA ROTA\n📍 Local: ${local}${coords}\n👥 Pessoas na casa: ${pessoas}\n♿ Grupo prioritário: ${prioridade}\nPreciso de orientação ou resgate urgente!`;
+    const texto = `PEDIDO DE S.O.S - APP NA ROTA\nLocal: ${local}${coords}\nPessoas na casa: ${pessoas}\nGrupo prioritário: ${prioridade}\nPreciso de orientação ou resgate urgente!`;
 
     navigator.clipboard.writeText(texto).then(() => {
       this.copiadoComSucesso.set(true);

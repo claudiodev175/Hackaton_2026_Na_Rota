@@ -1,5 +1,5 @@
 .app-layout {
   padding-bottom: 80px; /* Espaço para a bottom bar não cobrir os botões */
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: var(--color-zinc-100);
 }
