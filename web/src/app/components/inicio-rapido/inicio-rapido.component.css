@@ -12,6 +12,18 @@
   box-shadow: var(--focus-ring);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .container-mobile {
   width: 100%;
   max-width: 480px;
@@ -205,17 +217,50 @@
   }
 }
 
-/* Input de Texto (16px mínimo para não dar zoom no iOS/Android) */
+/* Campo de localização com foco visual no contêiner inteiro. */
+.campo-input-endereco {
+  display: flex;
+  align-items: center;
+  min-block-size: 56px;
+  border: 1px solid var(--color-zinc-300);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  box-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.02);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus-within {
+    border-color: var(--color-indigo-600);
+    box-shadow: 0 0 0 3px var(--color-indigo-100);
+  }
+
+  > svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 16px;
+    color: var(--color-indigo-600);
+  }
+}
+
 .input-padrao {
-  min-block-size: 48px;
+  min-block-size: 54px;
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.75rem 14px 0.75rem 12px;
   font-size: 1rem;
   color: var(--color-zinc-900);
-  background-color: var(--color-white);
-  border: 2px solid var(--color-zinc-500);
-  border-radius: 10px;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
   box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: var(--color-zinc-400);
+    opacity: 1;
+  }
 }
 
 /* Contador de Pessoas */

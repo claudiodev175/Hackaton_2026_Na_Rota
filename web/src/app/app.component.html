@@ -1,17 +1,17 @@
 <div class="app-layout">
-  <!-- ABA 1: INÍCIO (Se já tem dados cadastrados, exibe o S.O.S. Se não, exibe o formulário inicial) -->
-  <ng-container *ngIf="telaAtual() === 'inicio' || telaAtual() === 'sos'">
-    <app-tela-sos
-      *ngIf="dadosUsuario; else formularioInicial"
-      [dadosUsuario]="dadosUsuario"
-      (abrirAbrigos)="irParaAbrigos()"
-      (editarLocal)="editarLocal()">
-    </app-tela-sos>
+  <!-- S.O.S. só aparece depois que a identificação foi concluída. -->
+  <app-tela-sos
+    *ngIf="telaAtual() === 'sos' && dadosUsuario"
+    [dadosUsuario]="dadosUsuario"
+    (abrirAbrigos)="irParaAbrigos()"
+    (editarLocal)="editarLocal()">
+  </app-tela-sos>
 
-    <ng-template #formularioInicial>
-      <app-inicio-rapido (dadosConfirmados)="aoConfirmarDados($event)"></app-inicio-rapido>
-    </ng-template>
-  </ng-container>
+  <!-- Identificação permanece como uma tela independente do S.O.S. -->
+  <app-inicio-rapido
+    *ngIf="telaAtual() === 'identificacao' || (telaAtual() === 'sos' && !dadosUsuario)"
+    (dadosConfirmados)="aoConfirmarDados($event)">
+  </app-inicio-rapido>
 
   <!-- ABA 2: ABRIGOS -->
   <app-lista-abrigos
@@ -21,12 +21,6 @@
     [quantidadePessoas]="dadosUsuario?.quantidadePessoas || 1"
     [temPrioridade]="dadosUsuario?.temPrioridade || false">
   </app-lista-abrigos>
-
-  <!-- ABA 3: IDENTIFICAÇÃO (Formulário rápido de grupo e localização) -->
-  <app-inicio-rapido
-    *ngIf="telaAtual() === 'identificacao'"
-    (dadosConfirmados)="aoConfirmarDados($event)">
-  </app-inicio-rapido>
 
   <!-- ABA 4: CONTATOS (Central com Bombeiros, Defesa Civil, SAMU e órgãos de enchentes) -->
   <!-- Aba CONTATOS -->
@@ -43,7 +37,6 @@
   <!-- BARRA DE NAVEGAÇÃO INFERIOR FIXA (Em todas as telas) -->
   <app-bottom-nav
     [abaAtual]="telaAtual()"
-    [mostrarSos]="!!dadosUsuario"
     (mudarAba)="navegarPara($event)">
   </app-bottom-nav>
 

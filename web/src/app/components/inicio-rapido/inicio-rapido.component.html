@@ -59,22 +59,27 @@
         {{ mensagemStatus() }}
       </p>
 
-      <label for="campo-endereco" class="label-campo">
-        Ou digite seu bairro ou município:
-      </label>
+      <label for="campo-endereco" class="label-campo sr-only">Bairro ou município</label>
       <span id="dica-endereco" class="texto-ajuda">
         Ex: Digite "I" para ver Ibura, Imbiribeira, etc.
       </span>
-      <input
-        id="campo-endereco"
-        name="endereco"
-        type="text"
-        class="input-padrao"
-        list="lista-bairros-rmr"
-        [ngModel]="endereco()"
-        (ngModelChange)="endereco.set($event)"
-        aria-describedby="dica-endereco"
-        autocomplete="off" />
+      <div class="campo-input-endereco">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+          <circle cx="12" cy="10" r="2.5"></circle>
+        </svg>
+        <input
+          id="campo-endereco"
+          name="endereco"
+          type="text"
+          class="input-padrao"
+          list="lista-bairros-rmr"
+          placeholder="Ou digite seu bairro ou município"
+          [ngModel]="endereco()"
+          (ngModelChange)="endereco.set($event)"
+          aria-describedby="dica-endereco"
+          autocomplete="off" />
+      </div>
 
       <datalist id="lista-bairros-rmr">
         <option *ngFor="let bairro of bairrosDisponiveis" [value]="bairro"></option>

@@ -23,7 +23,7 @@ import { ContatosComponent } from './components/contatos/contatos.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  telaAtual = signal<AbaAtiva>('inicio');
+  telaAtual = signal<AbaAtiva>('identificacao');
   dadosUsuario?: DadosUsuarioEmergencia;
 
   constructor() {
@@ -32,25 +32,21 @@ export class AppComponent {
 
   aoConfirmarDados(dados: DadosUsuarioEmergencia): void {
     this.dadosUsuario = dados;
-    // Após preencher o formulário, redireciona para a aba de abrigos
-    this.telaAtual.set('abrigos'); 
+    this.telaAtual.set('sos');
   }
 
   editarLocal(): void {
     this.dadosUsuario = undefined;
     localStorage.removeItem('narota_dados_emergencia');
+    this.telaAtual.set('identificacao');
   }
 
   irParaAbrigos(): void {
     this.telaAtual.set('abrigos');
   }
 
-  voltarParaInicio(): void {
-    this.telaAtual.set('inicio');
-  }
-
   navegarPara(aba: AbaAtiva): void {
-    this.telaAtual.set(aba);
+    this.telaAtual.set(aba === 'sos' && !this.dadosUsuario ? 'identificacao' : aba);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -72,6 +68,7 @@ export class AppComponent {
       }
 
       this.dadosUsuario = dados;
+      this.telaAtual.set('sos');
     } catch (error) {
       console.error('Não foi possível restaurar os dados de emergência salvos.', error);
       localStorage.removeItem('narota_dados_emergencia');
