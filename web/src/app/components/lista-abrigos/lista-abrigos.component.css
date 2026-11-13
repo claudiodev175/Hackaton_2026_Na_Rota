@@ -68,6 +68,77 @@
   border-color: #1d4ed8;
 }
 
+.areas-risco {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.areas-risco summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.areas-risco[open] summary {
+  margin-bottom: 6px;
+}
+
+.areas-risco p {
+  margin: 0 0 6px;
+}
+
+.areas-risco a {
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.erro-areas-risco {
+  color: #991b1b;
+}
+
+.aviso-area-risco {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  background-color: #fffbeb;
+  color: #92400e;
+}
+
+.aviso-area-risco.aviso-encontrado {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.aviso-area-risco h3,
+.aviso-area-risco p {
+  margin: 0 0 6px;
+}
+
+.aviso-meteorologico {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.aviso-meteorologico-atencao {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+  color: #92400e;
+}
+
+.aviso-meteorologico h3,
+.aviso-meteorologico p {
+  margin: 0 0 6px;
+}
+
 /* Lista de Cards */
 .lista-cards {
   display: flex;
@@ -154,8 +225,11 @@
 
 .numero-vagas {
   font-weight: 700;
-  color: #1f2937;
-  font-size: 1rem;
+  color: #047857;
+  background-color: #d1fae5;
+  font-size: 1.2rem;
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
 .tag-acessivel {

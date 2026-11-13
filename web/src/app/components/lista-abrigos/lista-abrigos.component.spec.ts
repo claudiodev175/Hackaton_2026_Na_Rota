@@ -25,7 +25,7 @@ describe('ListaAbrigosComponent', () => {
     const abrigo = component.abrigos()[0];
 
     expect(component.obterUrlMapa(abrigo)).toBe(
-      'https://www.google.com/maps/search/?api=1&query=-8.1103175,-34.9238188'
+      'https://www.google.com/maps/search/?api=1&query=Abrigo%20Emergencial%20do%20Gusm%C3%A3o%2C%20Travessa%20do%20Gusm%C3%A3o%2C%20178%2C%20pr%C3%B3ximo%20%C3%A0%20Pra%C3%A7a%20S%C3%A9rgio%20Loreto%2C%20Recife'
     );
   });
 
@@ -33,7 +33,7 @@ describe('ListaAbrigosComponent', () => {
     const abrigo = component.abrigos()[1];
 
     expect(component.obterUrlMapa(abrigo)).toBe(
-      'https://www.google.com/maps/search/?api=1&query=Gin%C3%A1sio%20de%20Jardim%20S%C3%A3o%20Paulo%2C%20Jardim%20S%C3%A3o%20Paulo%2C%20Recife'
+      'https://www.google.com/maps/search/?api=1&query=Centro%20POP%20Gl%C3%B3ria%2C%20Rua%20Bernardo%20Guimar%C3%A3es%2C%20135%2C%20pr%C3%B3ximo%20%C3%A0%20Unicap%2C%20Recife'
     );
   });
 });

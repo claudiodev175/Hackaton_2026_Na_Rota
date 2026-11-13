@@ -17,6 +17,7 @@
   <app-lista-abrigos
     *ngIf="telaAtual() === 'abrigos'"
     [enderecoUsuario]="dadosUsuario?.endereco || ''"
+    [coordenadasUsuario]="dadosUsuario?.coordenadas"
     [quantidadePessoas]="dadosUsuario?.quantidadePessoas || 1"
     [temPrioridade]="dadosUsuario?.temPrioridade || false">
   </app-lista-abrigos>

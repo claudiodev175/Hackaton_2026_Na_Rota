@@ -12,17 +12,43 @@
     <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'aberto'" (click)="filtrar('aberto')">Com Vagas</button>
   </div>
 
+  <details class="areas-risco">
+    <summary>Áreas de risco do Recife</summary>
+    <div aria-live="polite">
+      <p *ngIf="carregandoAreasRisco">Consultando dados oficiais...</p>
+      <ng-container *ngIf="areasRisco() as dados">
+        <p>{{ dados.descricao }}</p>
+        <a [href]="dados.urlDados" target="_blank" rel="noopener">Ver informações oficiais</a>
+      </ng-container>
+      <p *ngIf="erroAreasRisco()" class="erro-areas-risco">{{ erroAreasRisco() }}</p>
+    </div>
+  </details>
+
+  <section *ngIf="avisoAreaRisco() as aviso" class="aviso-area-risco" [class.aviso-encontrado]="aviso.encontrada" aria-live="polite">
+    <h3>{{ aviso.titulo }}</h3>
+    <p>{{ aviso.mensagem }}</p>
+  </section>
+  <p *ngIf="erroAvisoAreaRisco()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoAreaRisco() }}</p>
+
+  <section *ngIf="avisoMeteorologico() as aviso" class="aviso-meteorologico" [class.aviso-meteorologico-atencao]="aviso.nivel === 'atencao'" aria-live="polite">
+    <h3>{{ aviso.titulo }}</h3>
+    <p>{{ aviso.mensagem }}</p>
+  </section>
+  <p *ngIf="erroAvisoMeteorologico()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoMeteorologico() }}</p>
+
   <section class="lista-cards">
     <article *ngFor="let abrigo of abrigosFiltrados" class="card-abrigo" [class.lotado]="abrigo.status === 'LOTADO'">
       <div class="card-topo">
         <h3>{{ abrigo.nome }}</h3>
+        <span *ngIf="abrigo.tipo" class="tipo-abrigo">{{ abrigo.tipo }}</span>
         <span class="badge-status" [class.status-aberto]="abrigo.status === 'ABERTO'" [class.status-lotado]="abrigo.status === 'LOTADO'">
           {{ abrigo.status === 'ABERTO' ? 'Vagas abertas' : 'Lotado' }}
         </span>
       </div>
-      <p class="localizacao-abrigo">📍 {{ abrigo.bairro }}, {{ abrigo.municipio }} <span class="distancia" *ngIf="abrigo.distanciaKm">({{ abrigo.distanciaKm }} km)</span></p>
+      <p class="localizacao-abrigo">📍 {{ abrigo.endereco }}, {{ abrigo.bairro }}, {{ abrigo.municipio }} <span class="distancia" *ngIf="abrigo.distanciaKm">({{ abrigo.distanciaKm }} km)</span></p>
       <div class="detalhes-vagas">
-        <div class="info-vagas"><span class="numero-vagas">{{ abrigo.vagasDisponiveis }}</span> vagas livres</div>
+        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis !== undefined"><span class="numero-vagas">{{ abrigo.vagasDisponiveis }}</span> vagas livres</div>
+        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis === undefined">Consulte a disponibilidade por telefone</div>
         <div *ngIf="abrigo.temAcessibilidadePcd" class="tag-acessivel">♿ Acessível</div>
       </div>
       <div class="acoes-card">
