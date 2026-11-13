@@ -1,0 +1,69 @@
+<main class="container-mobile">
+  <header class="header-resumo">
+    <div>
+      <h2>Abrigos Próximos</h2>
+      <p class="sub-resumo">Busca para <strong>{{ quantidadePessoas }} pessoa(s)</strong> <span *ngIf="temPrioridade">(Com prioridade)</span></p>
+    </div>
+    <span class="badge-offline">offline 🟢</span>
+  </header>
+
+  <div class="filtros-container">
+    <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'todos'" (click)="filtrar('todos')">Todos</button>
+    <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'aberto'" (click)="filtrar('aberto')">Com Vagas</button>
+  </div>
+
+  <details class="areas-risco">
+    <summary>Áreas de risco do Recife</summary>
+    <div aria-live="polite">
+      <p *ngIf="carregandoAreasRisco">Consultando dados oficiais...</p>
+      <ng-container *ngIf="areasRisco() as dados">
+        <p>{{ dados.descricao }}</p>
+        <a [href]="dados.urlDados" target="_blank" rel="noopener">Ver informações oficiais</a>
+      </ng-container>
+      <p *ngIf="erroAreasRisco()" class="erro-areas-risco">{{ erroAreasRisco() }}</p>
+    </div>
+  </details>
+
+  <section *ngIf="avisoAreaRisco() as aviso" class="aviso-area-risco" [class.aviso-encontrado]="aviso.encontrada" aria-live="polite">
+    <h3>{{ aviso.titulo }}</h3>
+    <p>{{ aviso.mensagem }}</p>
+  </section>
+  <p *ngIf="erroAvisoAreaRisco()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoAreaRisco() }}</p>
+
+  <section *ngIf="avisoMeteorologico() as aviso" class="aviso-meteorologico" [class.aviso-meteorologico-atencao]="aviso.nivel === 'atencao'" aria-live="polite">
+    <h3>{{ aviso.titulo }}</h3>
+    <p>{{ aviso.mensagem }}</p>
+  </section>
+  <p *ngIf="erroAvisoMeteorologico()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoMeteorologico() }}</p>
+
+  <section class="lista-cards">
+    <article *ngFor="let abrigo of abrigosFiltrados" class="card-abrigo" [class.lotado]="abrigo.status === 'LOTADO'">
+      <div class="card-topo">
+        <h3>{{ abrigo.nome }}</h3>
+        <span *ngIf="abrigo.tipo" class="tipo-abrigo">{{ abrigo.tipo }}</span>
+        <span class="badge-status" [class.status-aberto]="abrigo.status === 'ABERTO'" [class.status-lotado]="abrigo.status === 'LOTADO'">
+          {{ abrigo.status === 'ABERTO' ? 'Vagas abertas' : 'Lotado' }}
+        </span>
+      </div>
+      <p class="localizacao-abrigo">📍 {{ abrigo.endereco }}, {{ abrigo.bairro }}, {{ abrigo.municipio }} <span class="distancia" *ngIf="abrigo.distanciaKm">({{ abrigo.distanciaKm }} km)</span></p>
+      <div class="detalhes-vagas">
+        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis !== undefined"><span class="numero-vagas">{{ abrigo.vagasDisponiveis }}</span> vagas livres</div>
+        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis === undefined">Consulte a disponibilidade por telefone</div>
+        <div *ngIf="abrigo.temAcessibilidadePcd" class="tag-acessivel">♿ Acessível</div>
+      </div>
+      <div class="acoes-card">
+        <a [href]="'tel:' + abrigo.telefoneContato" class="btn-acao btn-ligar">📞 Ligar</a>
+        <a
+          [href]="obterUrlMapa(abrigo)"
+          target="_blank"
+          rel="noopener"
+          class="btn-acao btn-rota"
+          [attr.aria-label]="abrigo.coordenadas
+            ? 'Mostrar o lugar exato de ' + abrigo.nome + ' no mapa'
+            : 'Buscar ' + abrigo.nome + ' no mapa'">
+          🗺️ {{ abrigo.coordenadas ? 'Mostrar lugar exato' : 'Buscar no mapa' }}
+        </a>
+      </div>
+    </article>
+  </section>
+</main>

@@ -1,0 +1,297 @@
+:host {
+  display: block;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+/* Foco visível obrigatório para teclado e leitores de tela */
+:where(button, input, a):focus-visible {
+  outline: 3px solid #0b57d0;
+  outline-offset: 2px;
+}
+
+.container-mobile {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Cabeçalho */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: #5b21b6;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 1.25rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+
+  .subtitulo-cidade {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #475569;
+  }
+}
+
+/* Banner de Emergência 199 */
+.alerta-emergencia {
+  background-color: #fef2f2;
+  border: 2px solid #b91c1c;
+  border-radius: 14px;
+  padding: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .alerta-texto {
+    margin: 0;
+    font-size: 1rem;
+    color: #7f1d1d;
+    line-height: 1.4;
+  }
+}
+
+.btn-ligar-199 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-block-size: 48px;
+  width: 100%;
+  background-color: #b91c1c;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Card do Formulário */
+.card-formulario {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .instrucao-simples {
+    margin: -0.75rem 0 0 0;
+    font-size: 1rem;
+    color: #334155;
+    line-height: 1.4;
+  }
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldset-limpo {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.label-campo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.texto-ajuda {
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.3;
+}
+
+/* Botão GPS */
+.btn-gps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-block-size: 52px;
+  width: 100%;
+  background-color: #ede9fe;
+  color: #4c1d95;
+  border: 2px solid #5b21b6;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+.status-gps {
+  margin: 0;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #059669;
+
+  &.status-erro {
+    background-color: #fffbeb;
+    color: #92400e;
+    border-color: #d97706;
+  }
+}
+
+/* Input de Texto (16px mínimo para não dar zoom no iOS/Android) */
+.input-padrao {
+  min-block-size: 48px;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 2px solid #475569;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Contador de Pessoas */
+.contador-pessoas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.btn-contador {
+  min-width: 52px;
+  min-block-size: 52px;
+  background-color: #5b21b6;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #cbd5e1;
+    color: #475569;
+    cursor: not-allowed;
+  }
+}
+
+.numero-pessoas {
+  font-size: 1.125rem;
+  color: #0f172a;
+
+  strong {
+    font-size: 1.375rem;
+    color: #5b21b6;
+  }
+}
+
+/* Checkbox de Prioridade */
+.checkbox-box {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.875rem;
+}
+
+.checkbox-grande {
+  min-width: 24px;
+  min-height: 24px;
+  margin-top: 2px;
+  accent-color: #5b21b6;
+  cursor: pointer;
+}
+
+.label-checkbox {
+  font-size: 1rem;
+  color: #0f172a;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* Botões de Ação */
+.btn-primario {
+  min-block-size: 54px;
+  width: 100%;
+  background-color: #5b21b6;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.875rem 1rem;
+}
+
+.btn-secundario {
+  min-block-size: 48px;
+  width: 100%;
+  background-color: transparent;
+  color: #334155;
+  border: 2px solid #94a3b8;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+}

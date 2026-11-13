@@ -1,0 +1,101 @@
+.container-mobile {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1a1a1a;
+  background-color: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.header-resumo h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #111;
+}
+
+.sub-resumo {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0 0 16px 0;
+}
+
+.alerta-emergencia-box {
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+  color: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.2);
+}
+
+.alerta-emergencia-box p {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.botoes-alerta {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-mini-sos {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.lista-instrucoes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-instrucao {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.card-instrucao-topo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card-instrucao-topo .icone {
+  font-size: 1.2rem;
+}
+
+.card-instrucao-topo h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1f2937;
+}
+
+.card-instrucao ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-instrucao li {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.4;
+}

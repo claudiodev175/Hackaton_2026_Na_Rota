@@ -1,0 +1,277 @@
+/* Container Mobile-First */
+.container-mobile {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a1a;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Header do Dashboard */
+.header-resumo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.header-resumo h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #111;
+}
+
+.sub-resumo {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
+
+.badge-offline {
+  background-color: #e2fcd6;
+  color: #137333;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #b7eb8f;
+  white-space: nowrap;
+}
+
+/* Filtros */
+.filtros-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.btn-filtro {
+  flex: 1;
+  min-height: 48px; /* Altura ideal para toque sob estresse */
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-filtro.ativo {
+  background-color: #1d4ed8;
+  color: #fff;
+  border-color: #1d4ed8;
+}
+
+.areas-risco {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.areas-risco summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.areas-risco[open] summary {
+  margin-bottom: 6px;
+}
+
+.areas-risco p {
+  margin: 0 0 6px;
+}
+
+.areas-risco a {
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.erro-areas-risco {
+  color: #991b1b;
+}
+
+.aviso-area-risco {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  background-color: #fffbeb;
+  color: #92400e;
+}
+
+.aviso-area-risco.aviso-encontrado {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.aviso-area-risco h3,
+.aviso-area-risco p {
+  margin: 0 0 6px;
+}
+
+.aviso-meteorologico {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.aviso-meteorologico-atencao {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+  color: #92400e;
+}
+
+.aviso-meteorologico h3,
+.aviso-meteorologico p {
+  margin: 0 0 6px;
+}
+
+/* Lista de Cards */
+.lista-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-abrigo {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-abrigo.lotado {
+  opacity: 0.75;
+  background-color: #f9fafb;
+  border-color: #f3f4f6;
+}
+
+.card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.card-topo h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+}
+
+/* Badges de Status */
+.badge-status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-aberto {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-lotado {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.localizacao-abrigo {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.distancia {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+/* Detalhes de Vagas e Acessibilidade */
+.detalhes-vagas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.info-vagas {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.numero-vagas {
+  font-weight: 700;
+  color: #047857;
+  background-color: #d1fae5;
+  font-size: 1.2rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.tag-acessivel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e40af;
+  background-color: #dbeafe;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Ações (Botões Ligar / GPS) > 48px */
+.acoes-card {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.btn-acao {
+  flex: 1;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-acao:active {
+  opacity: 0.8;
+}
+
+.btn-ligar {
+  background-color: #059669;
+  color: #fff;
+}
+
+.btn-rota {
+  background-color: #2563eb;
+  color: #fff;
+}
