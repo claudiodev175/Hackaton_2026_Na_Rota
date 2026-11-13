@@ -26,10 +26,19 @@ export class AppComponent {
   telaAtual = signal<AbaAtiva>('inicio');
   dadosUsuario?: DadosUsuarioEmergencia;
 
+  constructor() {
+    this.restaurarDadosUsuario();
+  }
+
   aoConfirmarDados(dados: DadosUsuarioEmergencia): void {
     this.dadosUsuario = dados;
     // Após preencher o formulário, redireciona para a aba de abrigos
     this.telaAtual.set('abrigos'); 
+  }
+
+  editarLocal(): void {
+    this.dadosUsuario = undefined;
+    localStorage.removeItem('narota_dados_emergencia');
   }
 
   irParaAbrigos(): void {
@@ -43,5 +52,29 @@ export class AppComponent {
   navegarPara(aba: AbaAtiva): void {
     this.telaAtual.set(aba);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  private restaurarDadosUsuario(): void {
+    const dadosSalvos = localStorage.getItem('narota_dados_emergencia');
+    if (!dadosSalvos) {
+      return;
+    }
+
+    try {
+      const dados = JSON.parse(dadosSalvos) as DadosUsuarioEmergencia;
+      if (
+        typeof dados?.endereco !== 'string' ||
+        typeof dados.quantidadePessoas !== 'number' ||
+        typeof dados.temPrioridade !== 'boolean' ||
+        typeof dados.usouGps !== 'boolean'
+      ) {
+        throw new Error('Formato inválido');
+      }
+
+      this.dadosUsuario = dados;
+    } catch (error) {
+      console.error('Não foi possível restaurar os dados de emergência salvos.', error);
+      localStorage.removeItem('narota_dados_emergencia');
+    }
   }
 }

@@ -1,11 +1,11 @@
 <div class="app-layout">
   <!-- ABA 1: INÍCIO (Se já tem dados cadastrados, exibe o S.O.S. Se não, exibe o formulário inicial) -->
-  <ng-container *ngIf="telaAtual() === 'inicio'">
+  <ng-container *ngIf="telaAtual() === 'inicio' || telaAtual() === 'sos'">
     <app-tela-sos
       *ngIf="dadosUsuario; else formularioInicial"
       [dadosUsuario]="dadosUsuario"
       (abrirAbrigos)="irParaAbrigos()"
-      (editarLocal)="dadosUsuario = undefined">
+      (editarLocal)="editarLocal()">
     </app-tela-sos>
 
     <ng-template #formularioInicial>
@@ -42,6 +42,7 @@
   <!-- BARRA DE NAVEGAÇÃO INFERIOR FIXA (Em todas as telas) -->
   <app-bottom-nav
     [abaAtual]="telaAtual()"
+    [mostrarSos]="!!dadosUsuario"
     (mudarAba)="navegarPara($event)">
   </app-bottom-nav>
 

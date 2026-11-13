@@ -12,6 +12,7 @@ export type AbaAtiva = 'inicio' | 'abrigos' | 'identificacao' | 'contatos' | 'in
 })
 export class BottomNavComponent {
   @Input({ required: true }) abaAtual!: AbaAtiva;
+  @Input() mostrarSos = false;
   @Output() mudarAba = new EventEmitter<AbaAtiva>();
 
   selecionar(aba: AbaAtiva): void {

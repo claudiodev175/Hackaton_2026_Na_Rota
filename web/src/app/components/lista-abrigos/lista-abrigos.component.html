@@ -27,7 +27,16 @@
       </div>
       <div class="acoes-card">
         <a [href]="'tel:' + abrigo.telefoneContato" class="btn-acao btn-ligar">📞 Ligar</a>
-        <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-acao btn-rota">🗺️ GPS</a>
+        <a
+          [href]="obterUrlMapa(abrigo)"
+          target="_blank"
+          rel="noopener"
+          class="btn-acao btn-rota"
+          [attr.aria-label]="abrigo.coordenadas
+            ? 'Mostrar o lugar exato de ' + abrigo.nome + ' no mapa'
+            : 'Buscar ' + abrigo.nome + ' no mapa'">
+          🗺️ {{ abrigo.coordenadas ? 'Mostrar lugar exato' : 'Buscar no mapa' }}
+        </a>
       </div>
     </article>
   </section>
