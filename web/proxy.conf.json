@@ -1,13 +1,5 @@
 {
   "/health": { "target": "http://localhost:8080", "secure": false },
-  "/api-recife": {
-    "target": "https://dados.recife.pe.gov.br",
-    "secure": true,
-    "changeOrigin": true,
-    "pathRewrite": {
-      "^/api-recife": ""
-    }
-  },
   "/api-clima": {
     "target": "https://api.open-meteo.com",
     "secure": true,

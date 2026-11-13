@@ -2,43 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, switchMap } from 'rxjs';
 
-interface CkanPackage {
-  title: string;
-  notes?: string;
-}
-
-interface CkanSearchResponse {
-  success: boolean;
-  result?: CkanPackage;
-}
-
-interface RegistroAreaRisco {
-  bairro: string;
-  localidade: string;
-  latitude: number;
-  longitude: number;
-}
-
-interface CkanDatastoreResponse {
-  success: boolean;
-  result?: {
-    records: RegistroAreaRisco[];
-  };
-}
-
-export interface DadosAreasRisco {
-  titulo: string;
-  descricao: string;
-  urlDados: string;
-}
-
-export interface AvisoAreaRisco {
-  encontrada: boolean;
-  titulo: string;
-  mensagem: string;
-  registros: number;
-}
-
 export interface AvisoMeteorologico {
   titulo: string;
   mensagem: string;
@@ -69,68 +32,8 @@ interface RespostaGeocodificacao {
 @Injectable({ providedIn: 'root' })
 export class AreasRiscoService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = '/api-recife/api/3/action/package_show?id=defesa-civil';
-  private readonly registrosUrl = '/api-recife/api/3/action/datastore_search?resource_id=75344435-aca8-4aef-ab2c-9521d6e5ff18&limit=5000';
   private readonly climaUrl = 'https://api.open-meteo.com/v1/forecast';
   private readonly geocodificacaoUrl = 'https://geocoding-api.open-meteo.com/v1/search';
-
-  buscar(): Observable<DadosAreasRisco> {
-    return this.http.get<CkanSearchResponse>(this.apiUrl).pipe(
-      map(response => {
-        const pacote = response.result;
-
-        if (!response.success || !pacote) {
-          throw new Error('O conjunto oficial de áreas de risco não foi encontrado.');
-        }
-
-        return {
-          titulo: pacote.title,
-          descricao: pacote.notes || 'Dados oficiais de monitoramento das áreas de risco do Recife.',
-          urlDados: 'https://dados.recife.pe.gov.br/dataset/defesa-civil'
-        };
-      })
-    );
-  }
-
-  buscarAviso(endereco: string, coordenadas?: { lat: number; lng: number }): Observable<AvisoAreaRisco> {
-    return this.http.get<CkanDatastoreResponse>(this.registrosUrl).pipe(
-      map(response => {
-        if (!response.success || !response.result) {
-          throw new Error('A API não retornou os registros de áreas de risco.');
-        }
-
-        const registros = response.result.records;
-        const termoEndereco = this.normalizar(endereco);
-        const encontrados = registros.filter(registro => {
-          const bairro = this.normalizar(registro.bairro);
-          const localidade = this.normalizar(registro.localidade);
-          const correspondeAoBairro = termoEndereco.length > 2
-            && (termoEndereco.includes(bairro) || termoEndereco.includes(localidade));
-          const correspondeAoGps = coordenadas
-            && this.distanciaEmMetros(coordenadas, registro) <= 500;
-
-          return correspondeAoBairro || correspondeAoGps;
-        });
-
-        if (encontrados.length > 0) {
-          const localidade = encontrados[0].localidade || encontrados[0].bairro;
-          return {
-            encontrada: true,
-            titulo: `Atenção: área de risco registrada em ${localidade}`,
-            mensagem: `${encontrados.length} ponto(s) de risco constam na base oficial para esta localização. Em risco imediato, afaste-se de encostas e áreas alagadas e ligue 0800 081 3400.`,
-            registros: encontrados.length
-          };
-        }
-
-        return {
-          encontrada: false,
-          titulo: 'Consulta de risco localizada',
-          mensagem: 'Não há registro correspondente nesta base regional. Isso não confirma que o local seja seguro; em emergência, ligue 0800 081 3400.',
-          registros: 0
-        };
-      })
-    );
-  }
 
   buscarAvisoMeteorologico(endereco: string, coordenadas?: { lat: number; lng: number }): Observable<AvisoMeteorologico> {
     const localidadeInformada = endereco.trim() || 'Recife, Recife';
@@ -211,12 +114,4 @@ export class AreasRiscoService {
     return coordenadas[municipio] || coordenadas['recife'];
   }
 
-  private distanciaEmMetros(
-    origem: { lat: number; lng: number },
-    destino: { latitude: number; longitude: number }
-  ): number {
-    const latitudeEmMetros = (origem.lat - destino.latitude) * 111_000;
-    const longitudeEmMetros = (origem.lng - destino.longitude) * 111_000;
-    return Math.sqrt(latitudeEmMetros ** 2 + longitudeEmMetros ** 2);
-  }
 }

@@ -12,24 +12,6 @@
     <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'aberto'" (click)="filtrar('aberto')">Com Vagas</button>
   </div>
 
-  <details class="areas-risco">
-    <summary>Áreas de risco do Recife</summary>
-    <div aria-live="polite">
-      <p *ngIf="carregandoAreasRisco">Consultando dados oficiais...</p>
-      <ng-container *ngIf="areasRisco() as dados">
-        <p>{{ dados.descricao }}</p>
-        <a [href]="dados.urlDados" target="_blank" rel="noopener">Ver informações oficiais</a>
-      </ng-container>
-      <p *ngIf="erroAreasRisco()" class="erro-areas-risco">{{ erroAreasRisco() }}</p>
-    </div>
-  </details>
-
-  <section *ngIf="avisoAreaRisco() as aviso" class="aviso-area-risco" [class.aviso-encontrado]="aviso.encontrada" aria-live="polite">
-    <h3>{{ aviso.titulo }}</h3>
-    <p>{{ aviso.mensagem }}</p>
-  </section>
-  <p *ngIf="erroAvisoAreaRisco()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoAreaRisco() }}</p>
-
   <section *ngIf="avisoMeteorologico() as aviso" class="aviso-meteorologico" [class.aviso-meteorologico-atencao]="aviso.nivel === 'atencao'" aria-live="polite">
     <h3>{{ aviso.titulo }}</h3>
     <p>{{ aviso.mensagem }}</p>

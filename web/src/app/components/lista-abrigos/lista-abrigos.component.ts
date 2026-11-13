@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AreasRiscoService, AvisoAreaRisco, AvisoMeteorologico, DadosAreasRisco } from '../../services/areas-risco.service';
+import { AreasRiscoService, AvisoMeteorologico } from '../../services/areas-risco.service';
 
 export interface Abrigo {
   id: number;
@@ -39,34 +39,10 @@ export class ListaAbrigosComponent implements OnInit {
   ]);
 
   filtroAtivo = signal<string>('todos');
-  areasRisco = signal<DadosAreasRisco | null>(null);
-  carregandoAreasRisco = signal(false);
-  erroAreasRisco = signal('');
-  avisoAreaRisco = signal<AvisoAreaRisco | null>(null);
-  erroAvisoAreaRisco = signal('');
   avisoMeteorologico = signal<AvisoMeteorologico | null>(null);
   erroAvisoMeteorologico = signal('');
 
   ngOnInit(): void {
-    this.carregandoAreasRisco.set(true);
-    this.areasRiscoService.buscar().subscribe({
-      next: dados => {
-        this.areasRisco.set(dados);
-        this.carregandoAreasRisco.set(false);
-      },
-      error: error => {
-        console.error('Não foi possível carregar as áreas de risco oficiais.', error);
-        this.erroAreasRisco.set('Não foi possível consultar os dados oficiais agora.');
-        this.carregandoAreasRisco.set(false);
-      }
-    });
-    this.areasRiscoService.buscarAviso(this.enderecoUsuario, this.coordenadasUsuario).subscribe({
-      next: aviso => this.avisoAreaRisco.set(aviso),
-      error: error => {
-        console.error('Não foi possível cruzar a localização com os dados de risco.', error);
-        this.erroAvisoAreaRisco.set('Não foi possível verificar o risco da localização informada.');
-      }
-    });
     this.areasRiscoService.buscarAvisoMeteorologico(this.enderecoUsuario, this.coordenadasUsuario).subscribe({
       next: aviso => this.avisoMeteorologico.set(aviso),
       error: error => {
