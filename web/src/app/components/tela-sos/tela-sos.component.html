@@ -1,0 +1,67 @@
+<main class="container-mobile">
+  <!-- Barra superior com resumo do local -->
+  <header class="topo-status">
+    <div class="info-local">
+      <span class="label-topo">Você está em:</span>
+      <strong>📍 {{ dadosUsuario?.endereco || 'Centro, Recife' }}</strong>
+      <small>
+        {{ dadosUsuario?.quantidadePessoas || 1 }}
+        {{ (dadosUsuario?.quantidadePessoas || 1) === 1 ? 'pessoa' : 'pessoas' }}
+        <span *ngIf="dadosUsuario?.temPrioridade"> • Com prioridade</span>
+      </small>
+    </div>
+    <button type="button" class="btn-editar" (click)="editarLocal.emit()">
+      Alterar
+    </button>
+  </header>
+
+  <!-- Área Central: Botão Gigante de S.O.S -->
+  <section class="secao-sos" aria-label="Acionamento de emergência">
+    <p class="instrucao-sos">
+      Em caso de <strong>enchente, deslizamento ou risco de vida</strong>, toque no botão abaixo:
+    </p>
+
+    <button
+      *ngIf="!sosAcionado()"
+      type="button"
+      class="btn-sos-gigante"
+      (click)="acionarSos()">
+      <span class="sos-titulo">S.O.S</span>
+      <span class="sos-sub">PEDIR SOCORRO</span>
+    </button>
+
+    <!-- Painel ativado após apertar o S.O.S -->
+    <div *ngIf="sosAcionado()" class="painel-sos-ativo" role="alert" aria-live="assertive">
+      <h2>🚨 Canais Oficiais de Resgate</h2>
+      <p>Toque para ligar imediatamente (funcionam via chamada telefônica):</p>
+
+      <a href="tel:199" class="btn-acao-emergencia btn-199">
+        📞 Ligar Defesa Civil (199)
+      </a>
+
+      <a href="tel:193" class="btn-acao-emergencia btn-193">
+        🚒 Ligar Bombeiros (193)
+      </a>
+
+      <button type="button" class="btn-acao-emergencia btn-copiar" (click)="copiarDadosEmergencia()">
+        📋 {{ copiadoComSucesso() ? '✅ Dados copiado com sucesso!' : 'Copiar dados para enviar a um contato' }}
+      </button>
+
+      <button type="button" class="btn-cancelar-sos" (click)="cancelarSos()">
+        Voltar ao botão S.O.S
+      </button>
+    </div>
+  </section>
+
+  <!-- Atalho Principal para Abrigos -->
+  <section class="secao-atalhos" aria-label="Outras ações seguras">
+    <button type="button" class="card-atalho-abrigo" (click)="abrirAbrigos.emit()">
+      <div class="icone-abrigo" aria-hidden="true">🏠</div>
+      <div class="texto-abrigo">
+        <h3>Ver Abrigos Seguros</h3>
+        <p>Encontrar vagas abertas perto de você</p>
+      </div>
+      <span class="seta" aria-hidden="true">→</span>
+    </button>
+  </section>
+</main>
