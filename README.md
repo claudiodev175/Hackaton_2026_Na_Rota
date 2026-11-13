@@ -87,8 +87,7 @@ O backend será iniciado na porta `8080`. O endpoint de saúde é `GET /health`.
 
 ## 🌐 Deploy Público
 
-*   **Link do Front-end:** Não configurado.
-*   **Link da API (Back-end):** Não configurado.
+*   **Link do Front-end:** na-rota.onrender.com
 
 ## 🧪 Testes Automatizados
 
