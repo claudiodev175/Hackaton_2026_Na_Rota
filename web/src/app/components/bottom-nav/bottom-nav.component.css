@@ -6,14 +6,14 @@
   width: 100%;
   max-width: 480px;
   height: 68px;
-  background-color: #ffffff;
-  border-top: 1px solid #e5e7eb;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-zinc-200);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 4px 0;
   z-index: 1000;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 -2px 10px rgb(24 24 27 / 0.06);
 }
 
 .nav-item {
@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  color: #6b7280;
+  color: var(--color-zinc-500);
   font-size: 0.72rem;
   font-weight: 500;
   cursor: pointer;
@@ -40,7 +40,7 @@
 }
 
 .nav-item.ativo {
-  color: #6d28d9; /* Roxo destaque idêntico ao protótipo */
+  color: var(--color-indigo-600);
   font-weight: 700;
 }
 

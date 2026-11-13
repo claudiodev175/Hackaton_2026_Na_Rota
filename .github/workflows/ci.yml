@@ -33,3 +33,6 @@ jobs:
       - name: Build do front-end
         working-directory: web
         run: npm run build
+      - name: Testes unitários do front-end
+        working-directory: web
+        run: npm test -- --watch=false --browsers=ChromeHeadless

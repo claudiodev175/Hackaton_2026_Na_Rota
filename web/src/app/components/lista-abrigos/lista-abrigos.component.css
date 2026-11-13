@@ -1,277 +1,88 @@
-/* Container Mobile-First */
 .container-mobile {
   max-width: 480px;
-  margin: 0 auto;
-  padding: 16px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #1a1a1a;
-  background-color: #f8f9fa;
   min-height: 100vh;
-  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 24px 16px 112px;
+  background: var(--color-zinc-100);
+  color: var(--color-zinc-900);
 }
 
-/* Header do Dashboard */
 .header-resumo {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
-.header-resumo h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 0 4px 0;
-  color: #111;
-}
-
-.sub-resumo {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 0;
-}
+.cabecalho-copy { min-width: 0; }
+.eyebrow { margin: 0 0 6px; color: var(--color-indigo-700); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.header-resumo h2 { margin: 0; font-size: 1.65rem; line-height: 1.1; letter-spacing: -.04em; }
+.sub-resumo { margin: 8px 0 0; color: var(--color-zinc-500); font-size: .86rem; line-height: 1.4; }
+.sub-resumo span { color: var(--color-indigo-700); font-weight: 700; }
 
 .badge-offline {
-  background-color: #e2fcd6;
-  color: #137333;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border: 1px solid #b7eb8f;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 7px 9px;
+  border: 1px solid var(--color-green-600);
+  border-radius: 999px;
+  background: var(--color-green-50);
+  color: var(--color-green-700);
+  font-size: .7rem;
+  font-weight: 800;
   white-space: nowrap;
 }
 
-/* Filtros */
-.filtros-container {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-}
+.status-dot,
+.status-marker { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--color-green-600); }
 
-.btn-filtro {
-  flex: 1;
-  min-height: 48px; /* Altura ideal para toque sob estresse */
-  background-color: #fff;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #374151;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+.filtros-container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; padding: 4px; border: 1px solid var(--color-zinc-200); border-radius: 12px; background: var(--color-white); }
+.btn-filtro { min-height: 44px; border: 0; border-radius: 8px; background: transparent; color: var(--color-zinc-500); font-size: .86rem; font-weight: 800; cursor: pointer; }
+.btn-filtro.ativo { background: var(--color-zinc-900); color: var(--color-white); }
 
-.btn-filtro.ativo {
-  background-color: #1d4ed8;
-  color: #fff;
-  border-color: #1d4ed8;
-}
+.aviso-meteorologico { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; padding: 13px; border: 1px solid var(--color-blue-600); border-radius: 12px; background: var(--color-blue-50); color: var(--color-blue-700); }
+.aviso-meteorologico-atencao { border-color: var(--color-amber-600); background: var(--color-amber-50); color: var(--color-amber-700); }
+.aviso-icone { display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 28px; border-radius: 8px; background: rgb(255 255 255 / .7); }
+.aviso-icone svg { width: 16px; height: 16px; }
+.aviso-meteorologico h3, .aviso-meteorologico p { margin: 0; }
+.aviso-meteorologico h3 { font-size: .82rem; line-height: 1.3; }
+.aviso-meteorologico p { margin-top: 4px; font-size: .76rem; line-height: 1.45; }
+.erro-areas-risco { margin: 0 0 16px; color: var(--color-red-800); font-size: .85rem; }
 
-.areas-risco {
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #bfdbfe;
-  border-radius: 8px;
-  background-color: #eff6ff;
-  color: #1e3a8a;
-}
+.lista-cards { display: flex; flex-direction: column; gap: 12px; }
+.card-abrigo { display: flex; flex-direction: column; gap: 14px; padding: 16px; border: 1px solid var(--color-zinc-200); border-radius: 14px; background: var(--color-white); box-shadow: var(--shadow-sm); }
+.card-abrigo.lotado { background: var(--color-zinc-50); opacity: .78; }
+.card-topo { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.nome-abrigo { display: flex; min-width: 0; gap: 9px; }
+.status-marker { flex: 0 0 8px; width: 8px; height: 8px; margin-top: 6px; }
+.marker-lotado { background: var(--color-red-600); }
+.card-topo h3 { margin: 0; font-size: 1rem; line-height: 1.25; letter-spacing: -.025em; }
+.tipo-abrigo { display: block; margin-top: 4px; color: var(--color-zinc-500); font-size: .75rem; }
+.badge-status { flex: 0 0 auto; padding: 5px 8px; border-radius: 6px; font-size: .67rem; font-weight: 800; }
+.status-aberto { background: var(--color-green-50); color: var(--color-green-700); }
+.status-lotado { background: var(--color-red-100); color: var(--color-red-800); }
 
-.areas-risco summary {
-  cursor: pointer;
-  font-weight: 700;
-}
+.localizacao-abrigo { display: flex; align-items: flex-start; gap: 7px; margin: 0; color: var(--color-zinc-700); font-size: .82rem; line-height: 1.45; }
+.localizacao-abrigo svg { width: 16px; height: 16px; margin-top: 1px; color: var(--color-zinc-500); }
+.distancia { color: var(--color-zinc-500); white-space: nowrap; }
+.detalhes-vagas { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 8px 10px; border-radius: 9px; background: var(--color-zinc-100); }
+.info-vagas { display: flex; align-items: center; gap: 8px; color: var(--color-zinc-500); font-size: .76rem; font-weight: 700; }
+.numero-vagas { color: var(--color-zinc-900); font-size: 1.2rem; font-weight: 850; font-variant-numeric: tabular-nums; }
+.tag-acessivel { padding: 5px 7px; border-radius: 6px; background: var(--color-blue-50); color: var(--color-blue-700); font-size: .68rem; font-weight: 800; }
+.acoes-card { display: grid; grid-template-columns: .75fr 1.25fr; gap: 8px; }
+.btn-acao { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; padding: 0 10px; border-radius: 9px; font-size: .82rem; font-weight: 800; text-decoration: none; }
+.btn-acao svg { width: 16px; height: 16px; }
+.btn-ligar { background: var(--color-green-600); color: var(--color-white); }
+.btn-rota { background: var(--color-indigo-600); color: var(--color-white); }
+.btn-acao:active, .btn-filtro:active { transform: translateY(1px); }
+.estado-vazio { padding: 28px 18px; border: 1px dashed var(--color-zinc-300); border-radius: 14px; background: var(--color-white); text-align: center; }
+.estado-vazio h3 { margin: 0; font-size: 1rem; }
+.estado-vazio p { margin: 6px 0 16px; color: var(--color-zinc-500); font-size: .85rem; }
+.estado-vazio .btn-filtro { width: 100%; background: var(--color-zinc-900); color: var(--color-white); }
 
-.areas-risco[open] summary {
-  margin-bottom: 6px;
-}
-
-.areas-risco p {
-  margin: 0 0 6px;
-}
-
-.areas-risco a {
-  color: #1d4ed8;
-  font-weight: 700;
-}
-
-.erro-areas-risco {
-  color: #991b1b;
-}
-
-.aviso-area-risco {
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #f59e0b;
-  border-radius: 8px;
-  background-color: #fffbeb;
-  color: #92400e;
-}
-
-.aviso-area-risco.aviso-encontrado {
-  border-color: #dc2626;
-  background-color: #fef2f2;
-  color: #991b1b;
-}
-
-.aviso-area-risco h3,
-.aviso-area-risco p {
-  margin: 0 0 6px;
-}
-
-.aviso-meteorologico {
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #93c5fd;
-  border-radius: 8px;
-  background-color: #eff6ff;
-  color: #1e3a8a;
-}
-
-.aviso-meteorologico-atencao {
-  border-color: #f59e0b;
-  background-color: #fffbeb;
-  color: #92400e;
-}
-
-.aviso-meteorologico h3,
-.aviso-meteorologico p {
-  margin: 0 0 6px;
-}
-
-/* Lista de Cards */
-.lista-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.card-abrigo {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card-abrigo.lotado {
-  opacity: 0.75;
-  background-color: #f9fafb;
-  border-color: #f3f4f6;
-}
-
-.card-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.card-topo h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0;
-  color: #111;
-}
-
-/* Badges de Status */
-.badge-status {
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.status-aberto {
-  background-color: #d1fae5;
-  color: #065f46;
-}
-
-.status-lotado {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-.localizacao-abrigo {
-  font-size: 0.9rem;
-  color: #4b5563;
-  margin: 0;
-}
-
-.distancia {
-  color: #6b7280;
-  font-size: 0.85rem;
-}
-
-/* Detalhes de Vagas e Acessibilidade */
-.detalhes-vagas {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f3f4f6;
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-
-.info-vagas {
-  font-size: 0.9rem;
-  color: #374151;
-}
-
-.numero-vagas {
-  font-weight: 700;
-  color: #047857;
-  background-color: #d1fae5;
-  font-size: 1.2rem;
-  padding: 2px 8px;
-  border-radius: 6px;
-}
-
-.tag-acessivel {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #1e40af;
-  background-color: #dbeafe;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-/* Ações (Botões Ligar / GPS) > 48px */
-.acoes-card {
-  display: flex;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-.btn-acao {
-  flex: 1;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn-acao:active {
-  opacity: 0.8;
-}
-
-.btn-ligar {
-  background-color: #059669;
-  color: #fff;
-}
-
-.btn-rota {
-  background-color: #2563eb;
-  color: #fff;
+@media (min-width: 640px) {
+  .container-mobile { padding-inline: 24px; }
 }

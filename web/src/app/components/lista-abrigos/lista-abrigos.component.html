@@ -1,58 +1,46 @@
 <main class="container-mobile">
   <header class="header-resumo">
-    <div>
-      <h2>Abrigos Próximos</h2>
-      <p class="sub-resumo">Busca para <strong>{{ quantidadePessoas }} pessoa(s)</strong> <span *ngIf="temPrioridade">(Com prioridade)</span></p>
+    <div class="cabecalho-copy">
+      <p class="eyebrow">Rede de acolhimento</p>
+      <h2>Abrigos próximos</h2>
     </div>
-    <span class="badge-offline">offline 🟢</span>
   </header>
 
-  <div class="filtros-container">
-    <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'todos'" (click)="filtrar('todos')">Todos</button>
-    <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'aberto'" (click)="filtrar('aberto')">Com Vagas</button>
+  <div class="filtros-container" role="group" aria-label="Filtrar abrigos">
+    <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'todos'" [attr.aria-pressed]="filtroAtivo() === 'todos'" (click)="filtrar('todos')">Todos</button>
+    <button type="button" class="btn-filtro" [class.ativo]="filtroAtivo() === 'aberto'" [attr.aria-pressed]="filtroAtivo() === 'aberto'" (click)="filtrar('aberto')">Com Vagas</button>
   </div>
 
-  <details class="areas-risco">
-    <summary>Áreas de risco do Recife</summary>
-    <div aria-live="polite">
-      <p *ngIf="carregandoAreasRisco">Consultando dados oficiais...</p>
-      <ng-container *ngIf="areasRisco() as dados">
-        <p>{{ dados.descricao }}</p>
-        <a [href]="dados.urlDados" target="_blank" rel="noopener">Ver informações oficiais</a>
-      </ng-container>
-      <p *ngIf="erroAreasRisco()" class="erro-areas-risco">{{ erroAreasRisco() }}</p>
-    </div>
-  </details>
-
-  <section *ngIf="avisoAreaRisco() as aviso" class="aviso-area-risco" [class.aviso-encontrado]="aviso.encontrada" aria-live="polite">
-    <h3>{{ aviso.titulo }}</h3>
-    <p>{{ aviso.mensagem }}</p>
-  </section>
-  <p *ngIf="erroAvisoAreaRisco()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoAreaRisco() }}</p>
-
   <section *ngIf="avisoMeteorologico() as aviso" class="aviso-meteorologico" [class.aviso-meteorologico-atencao]="aviso.nivel === 'atencao'" aria-live="polite">
-    <h3>{{ aviso.titulo }}</h3>
-    <p>{{ aviso.mensagem }}</p>
+    <div class="aviso-icone" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v2M5.64 5.64l1.42 1.42M3 12h2M5.64 18.36l1.42-1.42M19 12h2M16.94 7.06l1.42-1.42M12 19v2"></path><circle cx="12" cy="12" r="4"></circle></svg>
+    </div>
+    <div><h3>{{ aviso.titulo }}</h3><p>{{ aviso.mensagem }}</p></div>
   </section>
   <p *ngIf="erroAvisoMeteorologico()" class="erro-areas-risco" aria-live="polite">{{ erroAvisoMeteorologico() }}</p>
 
   <section class="lista-cards">
     <article *ngFor="let abrigo of abrigosFiltrados" class="card-abrigo" [class.lotado]="abrigo.status === 'LOTADO'">
       <div class="card-topo">
-        <h3>{{ abrigo.nome }}</h3>
-        <span *ngIf="abrigo.tipo" class="tipo-abrigo">{{ abrigo.tipo }}</span>
+        <div class="nome-abrigo">
+          <span class="status-marker" [class.marker-lotado]="abrigo.status === 'LOTADO'" aria-hidden="true"></span>
+          <div><h3>{{ abrigo.nome }}</h3><span *ngIf="abrigo.tipo" class="tipo-abrigo">{{ abrigo.tipo }}</span></div>
+        </div>
         <span class="badge-status" [class.status-aberto]="abrigo.status === 'ABERTO'" [class.status-lotado]="abrigo.status === 'LOTADO'">
-          {{ abrigo.status === 'ABERTO' ? 'Vagas abertas' : 'Lotado' }}
+          {{ abrigo.status === 'ABERTO' ? 'Disponível' : 'Lotado' }}
         </span>
       </div>
-      <p class="localizacao-abrigo">📍 {{ abrigo.endereco }}, {{ abrigo.bairro }}, {{ abrigo.municipio }} <span class="distancia" *ngIf="abrigo.distanciaKm">({{ abrigo.distanciaKm }} km)</span></p>
+      <p class="localizacao-abrigo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+        {{ abrigo.endereco }}, {{ abrigo.bairro }}, {{ abrigo.municipio }} <span class="distancia" *ngIf="abrigo.distanciaKm">({{ abrigo.distanciaKm }} km)</span>
+      </p>
       <div class="detalhes-vagas">
-        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis !== undefined"><span class="numero-vagas">{{ abrigo.vagasDisponiveis }}</span> vagas livres</div>
-        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis === undefined">Consulte a disponibilidade por telefone</div>
-        <div *ngIf="abrigo.temAcessibilidadePcd" class="tag-acessivel">♿ Acessível</div>
+        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis !== undefined"><span class="numero-vagas">{{ abrigo.vagasDisponiveis }}</span><span>vagas livres</span></div>
+        <div class="info-vagas" *ngIf="abrigo.vagasDisponiveis === undefined"><span>Disponibilidade por telefone</span></div>
+        <span *ngIf="abrigo.temAcessibilidadePcd" class="tag-acessivel">PCD</span>
       </div>
       <div class="acoes-card">
-        <a [href]="'tel:' + abrigo.telefoneContato" class="btn-acao btn-ligar">📞 Ligar</a>
+        <a [href]="'tel:' + abrigo.telefoneContato" class="btn-acao btn-ligar">Ligar</a>
         <a
           [href]="obterUrlMapa(abrigo)"
           target="_blank"
@@ -61,9 +49,15 @@
           [attr.aria-label]="abrigo.coordenadas
             ? 'Mostrar o lugar exato de ' + abrigo.nome + ' no mapa'
             : 'Buscar ' + abrigo.nome + ' no mapa'">
-          🗺️ {{ abrigo.coordenadas ? 'Mostrar lugar exato' : 'Buscar no mapa' }}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20V6.5Z"></path><path d="M9 4v13.5M15 6.5V20"></path></svg>
+          Rota
         </a>
       </div>
     </article>
+    <div *ngIf="abrigosFiltrados.length === 0" class="estado-vazio">
+      <h3>Nenhum abrigo encontrado</h3>
+      <p>Tente outro filtro ou ligue para confirmar disponibilidade.</p>
+      <button type="button" class="btn-filtro" (click)="filtrar('todos')">Mostrar todos</button>
+    </div>
   </section>
 </main>

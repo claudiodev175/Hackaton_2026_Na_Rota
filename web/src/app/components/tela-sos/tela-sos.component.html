@@ -3,7 +3,13 @@
   <header class="topo-status">
     <div class="info-local">
       <span class="label-topo">Você está em:</span>
-      <strong>📍 {{ dadosUsuario?.endereco || 'Centro, Recife' }}</strong>
+      <strong>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+          <circle cx="12" cy="10" r="2.5"></circle>
+        </svg>
+        {{ dadosUsuario?.endereco || 'Centro, Recife' }}
+      </strong>
       <small>
         {{ dadosUsuario?.quantidadePessoas || 1 }}
         {{ (dadosUsuario?.quantidadePessoas || 1) === 1 ? 'pessoa' : 'pessoas' }}
@@ -32,19 +38,27 @@
 
     <!-- Painel ativado após apertar o S.O.S -->
     <div *ngIf="sosAcionado()" class="painel-sos-ativo" role="alert" aria-live="assertive">
-      <h2>🚨 Canais Oficiais de Resgate</h2>
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M10.3 4.3 2.2 18a2 2 0 0 0 1.7 3h16.2a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z"></path>
+          <path d="M12 9v4"></path>
+          <path d="M12 17h.01"></path>
+        </svg>
+        Canais Oficiais de Resgate
+      </h2>
       <p>Toque para ligar imediatamente (funcionam via chamada telefônica):</p>
 
       <a href="tel:199" class="btn-acao-emergencia btn-199">
-        📞 Ligar Defesa Civil (199)
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+        Ligar Defesa Civil (199)
       </a>
 
       <a href="tel:193" class="btn-acao-emergencia btn-193">
-        🚒 Ligar Bombeiros (193)
+        Ligar Bombeiros (193)
       </a>
 
       <button type="button" class="btn-acao-emergencia btn-copiar" (click)="copiarDadosEmergencia()">
-        📋 {{ copiadoComSucesso() ? '✅ Dados copiado com sucesso!' : 'Copiar dados para enviar a um contato' }}
+        {{ copiadoComSucesso() ? 'Dados copiados com sucesso!' : 'Copiar dados para enviar a um contato' }}
       </button>
 
       <button type="button" class="btn-cancelar-sos" (click)="cancelarSos()">
@@ -56,12 +70,20 @@
   <!-- Atalho Principal para Abrigos -->
   <section class="secao-atalhos" aria-label="Outras ações seguras">
     <button type="button" class="card-atalho-abrigo" (click)="abrirAbrigos.emit()">
-      <div class="icone-abrigo" aria-hidden="true">🏠</div>
+      <div class="icone-abrigo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m3 10 9-7 9 7"></path>
+          <path d="M5 9v11h14V9"></path>
+          <path d="M9 20v-6h6v6"></path>
+        </svg>
+      </div>
       <div class="texto-abrigo">
         <h3>Ver Abrigos Seguros</h3>
         <p>Encontrar vagas abertas perto de você</p>
       </div>
-      <span class="seta" aria-hidden="true">→</span>
+      <span class="seta" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </span>
     </button>
   </section>
 </main>

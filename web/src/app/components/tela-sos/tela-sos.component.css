@@ -1,8 +1,7 @@
 :host {
   display: block;
-  background-color: #f8fafc;
-  color: #0f172a;
-  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--color-zinc-100);
+  color: var(--color-zinc-900);
   min-height: 100vh;
 }
 
@@ -20,8 +19,8 @@
 }
 
 .topo-status {
-  background-color: #ffffff;
-  border: 1px solid #cbd5e1;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-zinc-200);
   border-radius: 12px;
   padding: 0.875rem 1rem;
   display: flex;
@@ -36,25 +35,32 @@
 
     .label-topo {
       font-size: 0.75rem;
-      color: #64748b;
+      color: var(--color-zinc-500);
       font-weight: 600;
     }
 
     strong {
       font-size: 0.95rem;
-      color: #0f172a;
+      color: var(--color-zinc-900);
+
+      svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: -3px;
+      }
     }
 
     small {
       font-size: 0.8rem;
-      color: #475569;
+      color: var(--color-zinc-500);
     }
   }
 
   .btn-editar {
-    background-color: #f1f5f9;
-    color: #334155;
-    border: 1px solid #cbd5e1;
+    background-color: var(--color-zinc-100);
+    color: var(--color-zinc-700);
+    border: 1px solid var(--color-zinc-200);
     border-radius: 8px;
     padding: 0.5rem 0.75rem;
     font-size: 0.8rem;
@@ -70,12 +76,12 @@
   align-items: center;
   text-align: center;
   gap: 1.25rem;
-  my: auto;
+  margin-block: auto;
 
   .instrucao-sos {
     margin: 0;
     font-size: 1rem;
-    color: #334155;
+    color: var(--color-zinc-700);
     max-width: 320px;
     line-height: 1.4;
   }
@@ -85,10 +91,10 @@
   width: 210px;
   height: 210px;
   border-radius: 50%;
-  background: radial-gradient(circle, #ef4444 0%, #b91c1c 100%);
-  color: #ffffff;
-  border: 8px solid #fecaca;
-  box-shadow: 0 10px 25px rgba(185, 28, 28, 0.45);
+  background: var(--color-red-600);
+  color: var(--color-white);
+  border: 8px solid var(--color-red-200);
+  box-shadow: 0 10px 25px rgb(185 28 28 / 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,8 +123,8 @@
 
 .painel-sos-ativo {
   width: 100%;
-  background-color: #fef2f2;
-  border: 2px solid #dc2626;
+  background-color: var(--color-red-50);
+  border: 2px solid var(--color-red-600);
   border-radius: 16px;
   padding: 1.25rem;
   box-sizing: border-box;
@@ -129,13 +135,20 @@
   h2 {
     margin: 0;
     font-size: 1.15rem;
-    color: #991b1b;
+    color: var(--color-red-800);
+
+    svg {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      vertical-align: -3px;
+    }
   }
 
   p {
     margin: 0;
     font-size: 0.875rem;
-    color: #7f1d1d;
+    color: var(--color-red-800);
   }
 }
 
@@ -148,25 +161,31 @@
   font-size: 1rem;
   font-weight: 800;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color-white);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+  }
 
   &.btn-199 {
-    background-color: #b91c1c;
+    background-color: var(--color-red-700);
   }
 
   &.btn-193 {
-    background-color: #c2410c;
+    background-color: var(--color-red-800);
   }
 
   &.btn-wpp {
-    background-color: #15803d;
+    background-color: var(--color-green-700);
   }
 }
 
 .btn-cancelar-sos {
   background: transparent;
   border: none;
-  color: #7f1d1d;
+  color: var(--color-red-800);
   font-weight: 700;
   font-size: 0.875rem;
   padding: 0.5rem;
@@ -176,8 +195,8 @@
 
 .card-atalho-abrigo {
   width: 100%;
-  background-color: #5b21b6;
-  color: #ffffff;
+  background-color: var(--color-indigo-600);
+  color: var(--color-white);
   border: none;
   border-radius: 14px;
   padding: 1rem 1.25rem;
@@ -187,10 +206,13 @@
   text-align: left;
   cursor: pointer;
   min-height: 72px;
-  box-shadow: 0 4px 12px rgba(91, 33, 182, 0.25);
+  box-shadow: var(--shadow-md);
 
   .icone-abrigo {
-    font-size: 1.75rem;
+    svg {
+      width: 28px;
+      height: 28px;
+    }
   }
 
   .texto-abrigo {
@@ -205,13 +227,15 @@
     p {
       margin: 0.2rem 0 0 0;
       font-size: 0.8rem;
-      color: #ede9fe;
+      color: var(--color-indigo-100);
     }
   }
 
   .seta {
-    font-size: 1.5rem;
-    font-weight: 800;
+    svg {
+      width: 22px;
+      height: 22px;
+    }
   }
 }
 
@@ -224,7 +248,7 @@
   font-size: 1rem;
   font-weight: 800;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color-white);
   border: none;
   cursor: pointer;
   padding: 0 1rem;
@@ -232,15 +256,15 @@
   text-align: center;
 
   &.btn-199 {
-    background-color: #b91c1c;
+    background-color: var(--color-red-700);
   }
 
   &.btn-193 {
-    background-color: #c2410c;
+    background-color: var(--color-red-800);
   }
 
   &.btn-copiar {
-    background-color: #0369a1;
+    background-color: var(--color-blue-700);
     font-size: 0.9rem;
   }
 }
