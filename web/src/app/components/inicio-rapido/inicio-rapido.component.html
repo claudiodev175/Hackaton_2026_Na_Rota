@@ -1,0 +1,131 @@
+<main class="container-mobile">
+  <!-- Cabeçalho do App -->
+  <header class="app-header">
+    <div class="brand">
+      <span class="badge-icon" aria-hidden="true">🛡️</span>
+      <div>
+        <h1>NA ROTA</h1>
+        <p class="subtitulo-cidade">RECIFE • PERNAMBUCO</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner de Emergência Direta (Funciona mesmo sem internet) -->
+  <section class="alerta-emergencia" aria-label="Ligação rápida de emergência">
+    <p class="alerta-texto">
+      <span aria-hidden="true">🚨</span>
+      <strong>Risco imediato de alagamento ou deslizamento?</strong>
+    </p>
+    <a href="tel:199" class="btn-ligar-199">
+      <span aria-hidden="true">📞</span> Ligar grátis para Defesa Civil (199)
+    </a>
+  </section>
+
+  <!-- Formulário Principal -->
+  <form class="card-formulario" (ngSubmit)="confirmarEVerAbrigos()">
+    <h2>Encontrar abrigo seguro</h2>
+    <p class="instrucao-simples">
+      Informe onde você está e quantas pessoas precisam de vaga.
+    </p>
+
+    <!-- Passo 1: Localização -->
+    <div class="campo-grupo">
+      <button
+        type="button"
+        class="btn-gps"
+        (click)="usarLocalizacaoAtual()"
+        [disabled]="carregandoGps()">
+        <span aria-hidden="true">📍</span>
+        {{ carregandoGps() ? 'Buscando localização...' : 'Usar minha localização atual' }}
+      </button>
+
+      <!-- Feedback acessível para leitores de tela -->
+      <p
+        *ngIf="mensagemStatus()"
+        class="status-gps"
+        [class.status-erro]="erroGps()"
+        role="status"
+        aria-live="polite">
+        {{ mensagemStatus() }}
+      </p>
+
+      <label for="campo-endereco" class="label-campo">
+        Ou digite seu bairro ou município:
+      </label>
+      <span id="dica-endereco" class="texto-ajuda">
+        Ex: Digite "I" para ver Ibura, Imbiribeira, etc.
+      </span>
+      <input
+        id="campo-endereco"
+        name="endereco"
+        type="text"
+        class="input-padrao"
+        list="lista-bairros-rmr"
+        [ngModel]="endereco()"
+        (ngModelChange)="endereco.set($event)"
+        aria-describedby="dica-endereco"
+        autocomplete="off" />
+
+      <datalist id="lista-bairros-rmr">
+        <option *ngFor="let bairro of bairrosDisponiveis" [value]="bairro"></option>
+      </datalist>
+    </div>
+
+    <!-- Passo 2: Quantidade de Pessoas na Casa -->
+    <fieldset class="campo-grupo fieldset-limpo">
+      <legend class="label-campo">
+        Quantas pessoas estão na casa com você?
+      </legend>
+      <span id="dica-pessoas" class="texto-ajuda">
+        Contando com você. Mostra abrigos com vagas para todos.
+      </span>
+
+      <div class="contador-pessoas" role="group" aria-describedby="dica-pessoas">
+        <button
+          type="button"
+          class="btn-contador"
+          (click)="alterarQuantidade(-1)"
+          [disabled]="quantidadePessoas() <= 1"
+          aria-label="Diminuir uma pessoa">
+          −
+        </button>
+
+        <span class="numero-pessoas" aria-live="polite">
+          <strong>{{ quantidadePessoas() }}</strong>
+          {{ quantidadePessoas() === 1 ? 'pessoa' : 'pessoas' }}
+        </span>
+
+        <button
+          type="button"
+          class="btn-contador"
+          (click)="alterarQuantidade(1)"
+          aria-label="Adicionar uma pessoa">
+          +
+        </button>
+      </div>
+    </fieldset>
+
+    <!-- Passo 3: Grupo Prioritário -->
+    <div class="campo-grupo checkbox-box">
+      <input
+        id="check-prioridade"
+        name="prioridade"
+        type="checkbox"
+        class="checkbox-grande"
+        [ngModel]="temPrioridade()"
+        (ngModelChange)="temPrioridade.set($event)" />
+      <label for="check-prioridade" class="label-checkbox">
+        Há idosos, crianças, gestantes ou pessoas com deficiência/surdas no grupo
+      </label>
+    </div>
+
+    <!-- Ação Principal -->
+    <button type="submit" class="btn-primario">
+      Ver abrigos mais próximos <span aria-hidden="true">→</span>
+    </button>
+
+    <button type="button" class="btn-secundario" (click)="pularParaAbrigos()">
+      Pular e ver todos os abrigos agora
+    </button>
+  </form>
+</main>
