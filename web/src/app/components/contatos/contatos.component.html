@@ -1,0 +1,79 @@
+<main class="container-mobile">
+  <header class="header-contatos">
+    <h2>Contatos de emergência</h2>
+    <p class="sub-header">TOQUE NO NÚMERO PARA LIGAR</p>
+  </header>
+
+  <!-- Cards de Emergência Principais (Bombeiros, Defesa Civil, SAMU) -->
+  <div class="grid-emergencia-topo">
+    <a href="tel:193" class="card-sos-box card-bombeiros">
+      <span class="numero-sos">193</span>
+      <strong>Bombeiros</strong>
+      <p>Resgate, incêndio e pessoas ilhadas</p>
+    </a>
+
+    <a href="tel:199" class="card-sos-box card-defesa">
+      <span class="numero-sos">199</span>
+      <strong>Defesa Civil</strong>
+      <p>Alagamento, deslizamento e abrigos</p>
+    </a>
+
+    <a href="tel:192" class="card-sos-box card-samu">
+      <span class="numero-sos">192</span>
+      <strong>SAMU / Ambulância</strong>
+      <p>Emergências médicas e socorro de saúde</p>
+    </a>
+  </div>
+
+  <!-- Órgãos e Contatos de Apoio Adicionais -->
+  <div class="lista-contatos-secundarios">
+    <a href="tel:190" class="item-contato-linha">
+      <div class="info-contato">
+        <strong>Polícia Militar</strong>
+        <span>Segurança e ocorrências</span>
+      </div>
+      <span class="btn-ligar-mini">📞 190</span>
+    </a>
+
+    <a href="tel:180" class="item-contato-linha">
+      <div class="info-contato">
+        <strong>Central da Mulher</strong>
+        <span>Violência contra a mulher</span>
+      </div>
+      <span class="btn-ligar-mini">📞 180</span>
+    </a>
+
+    <a href="tel:100" class="item-contato-linha">
+      <div class="info-contato">
+        <strong>Direitos Humanos</strong>
+        <span>Crianças, idosos e pessoas com deficiência</span>
+      </div>
+      <span class="btn-ligar-mini">📞 100</span>
+    </a>
+
+    <a href="tel:188" class="item-contato-linha">
+      <div class="info-contato">
+        <strong>CVV</strong>
+        <span>Apoio emocional 24 horas</span>
+      </div>
+      <span class="btn-ligar-mini">📞 188</span>
+    </a>
+  </div>
+
+  <!-- Atalho para Abrigos -->
+  <div class="secao-atalho-inferior">
+    <div class="bloco-abrigo-atalho">
+      <div class="info-contato">
+        <strong>Defesa Civil (RMR)</strong>
+        <span>Vagas em abrigos, rotas e resgate em áreas de risco</span>
+      </div>
+    </div>
+    <button type="button" class="btn-ir-abrigos" (click)="abrirAbrigos.emit()">
+      📍 Ver Abrigos Seguros
+    </button>
+  </div>
+
+  <footer class="footer-aviso">
+    <p>Ligue apenas em emergência real. Economize bateria e mantenha o telefone por perto.</p>
+  </footer>
+</main>
